@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PATTI CREATIVE PRODUCT ── クリエイターがちょっと助かる無料ツールの棚</title>
+<meta name="description" content="STUDIO PATTIが作った、クリエイターがちょっと助かる無料ツールを並べています。文字起こし、スクリーンショット、動画変換。全部無料、登録不要。">
+<meta name="theme-color" content="#1a1a24">
+
+<!-- SNSシェア時のプレビュー（OGP / Twitterカード） -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PATTI CREATIVE PRODUCT">
+<meta property="og:title" content="PATTI CREATIVE PRODUCT ── クリエイターがちょっと助かる無料ツールの棚">
+<meta property="og:description" content="現場の「困った」から生まれた無料ツールを並べています。全部無料、登録不要、データはあなたのPCの中だけ。">
+<meta property="og:url" content="https://ikemotodir.github.io/">
+<meta property="og:image" content="https://ikemotodir.github.io/assets/patti_logo.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PATTI CREATIVE PRODUCT ── クリエイターがちょっと助かる無料ツールの棚">
+<meta name="twitter:description" content="現場の「困った」から生まれた無料ツールを並べています。全部無料、登録不要、データはあなたのPCの中だけ。">
+<meta name="twitter:image" content="https://ikemotodir.github.io/assets/patti_logo.png">
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C9RFZES8ZS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C9RFZES8ZS');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/patti_logo.png">
+
+<style>
+  :root {
+    --pink: #D6336C;
+    --yellow: #FFC400;
+    --bg: #1a1a24;
+    --card: #232331;
+    --border: #2c2c3a;
+    --text: #ffffff;
+    --text-sub: #cccccc;
+    --text-dim: #bbbbbb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-weight: 500;
+    line-height: 1.8;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+  /* お知らせバー（config.jsonで遠隔操作） */
+  #notice-bar {
+    display: none;
+    background: var(--yellow);
+    color: #1a1a24;
+    text-align: center;
+    padding: 10px 16px;
+    font-weight: 700;
+    font-size: .95rem;
+  }
+  #notice-bar a { color: #1a1a24; }
+
+  /* ヒーロー */
+  header {
+    text-align: center;
+    padding: 64px 20px 48px;
+  }
+  header img.logo {
+    width: 96px;
+    height: auto;
+    margin-bottom: 16px;
+  }
+  header h1 {
+    font-weight: 900;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    letter-spacing: .04em;
+  }
+  header h1 .accent { color: var(--pink); }
+  header .tagline {
+    margin-top: 12px;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--text-sub);
+  }
+  header .sub {
+    margin-top: 8px;
+    color: var(--text-dim);
+    font-size: .95rem;
+  }
+  .free-badges {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .free-badges span {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: .85rem;
+    color: var(--text-sub);
+  }
+
+  section { padding: 40px 0; }
+  h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  h2 .accent { color: var(--yellow); }
+  .section-lead {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: .95rem;
+    margin-bottom: 28px;
+  }
+
+  /* ツールカード */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  a.tool-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--pink);
+  }
+  .tool-card .emoji { font-size: 2rem; line-height: 1; }
+  .tool-card h3 {
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: .03em;
+  }
+  .tool-card p {
+    color: var(--text-sub);
+    font-size: .92rem;
+    flex-grow: 1;
+  }
+  .badge {
+    align-self: flex-start;
+    border-radius: 999px;
+    padding: 3px 12px;
+    font-size: .75rem;
+    font-weight: 700;
+  }
+  .badge.live { background: var(--pink); color: #fff; }
+  .badge.soon { background: var(--yellow); color: #1a1a24; }
+  .badge.future { background: var(--border); color: var(--text-dim); }
+  .tool-card .cta {
+    color: var(--pink);
+    font-weight: 700;
+    font-size: .9rem;
+  }
+  .tool-card.coming {
+    border-style: dashed;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-dim);
+  }
+
+  /* 広告枠 */
+  .ad-slot {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    margin-bottom: 16px;
+    transition: border-color .15s ease;
+  }
+  .ad-slot:hover { border-color: var(--yellow); }
+  .ad-slot img { max-width: 160px; border-radius: 8px; }
+  .ad-slot .ad-label {
+    background: var(--border);
+    color: var(--text-dim);
+    border-radius: 4px;
+    font-size: .7rem;
+    padding: 2px 8px;
+    align-self: flex-start;
+    flex-shrink: 0;
+  }
+  .ad-slot .ad-body h3 { font-size: 1.05rem; font-weight: 700; }
+  .ad-slot .ad-body p { font-size: .9rem; color: var(--text-sub); }
+
+  .sponsor-box {
+    background: linear-gradient(135deg, rgba(214,51,108,.12), rgba(255,196,0,.08));
+    border: 1px dashed var(--pink);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .sponsor-box h3 { font-weight: 900; font-size: 1.2rem; }
+  .sponsor-box p {
+    color: var(--text-sub);
+    font-size: .92rem;
+    max-width: 560px;
+    margin: 10px auto 18px;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--pink);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 12px 36px;
+    border-radius: 999px;
+    box-shadow: 0 6px 24px rgba(214,51,108,.45);
+    transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+
+  /* 読みもの */
+  .read-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    text-decoration: none;
+    display: block;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .read-card:hover { transform: translateY(-4px); border-color: var(--yellow); }
+  .read-card h3 { font-weight: 700; font-size: 1.05rem; }
+  .read-card p { color: var(--text-sub); font-size: .9rem; margin-top: 6px; }
+  .read-card .cta { color: var(--yellow); font-weight: 700; font-size: .85rem; }
+
+  /* About */
+  .about-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .about-box p { color: var(--text-sub); font-size: .95rem; }
+  .about-box p + p { margin-top: 12px; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    padding: 32px 20px 48px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: .8rem;
+  }
+  footer p + p { margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<div id="notice-bar"></div>
+
+<header>
+  <img class="logo" src="assets/patti_logo.png" alt="PATTI ロゴ">
+  <h1>PATTI <span class="accent">CREATIVE</span> PRODUCT</h1>
+  <p class="tagline">クリエイターが「ちょっと助かる」無料ツールの棚。</p>
+  <p class="sub">エンジニア経験ゼロの映像ディレクターが、AIと一緒に創っています。</p>
+  <div class="free-badges">
+    <span>✅ 全部無料</span>
+    <span>✅ 登録不要</span>
+    <span>✅ データはあなたのPCの中だけ</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ツール棚 -->
+  <section id="tools">
+    <h2>🧰 ツールの棚</h2>
+    <p class="section-lead">現場の「困った」から生まれたツールたち。気になるものからどうぞ。</p>
+    <div class="grid">
+
+      <a class="tool-card" href="https://ikemotodir.github.io/patti-scribe/"
+         onclick="gtag('event','tool_click',{tool:'patti-scribe'})">
+        <span class="emoji">🎙️</span>
+        <span class="badge live">公開中</span>
+        <h3>PATTI SCRIBE</h3>
+        <p>無料の動画文字起こしツール。データがネットに出ない、完全ローカルAI。EDIUSテロップ自動生成にも対応。</p>
+        <span class="cta">詳しく見る →</span>
+      </a>
+
+      <a class="tool-card" href="https://github.com/ikemotodir/patti-shot"
+         onclick="gtag('event','tool_click',{tool:'patti-shot'})">
+        <span class="emoji">📸</span>
+        <span class="badge soon">ページ準備中</span>
+        <h3>PATTI SHOT</h3>
+        <p>Webページを丸ごと1枚に撮る、フルページスクリーンショットのChrome拡張。縦に長い資料も一発。</p>
+        <span class="cta">GitHubで見る →</span>
+      </a>
+
+      <a class="tool-card" href="https://ikemotodir.github.io/patti-crop/"
+         onclick="gtag('event','tool_click',{tool:'patti-crop'})">
+        <span class="emoji">✂️</span>
+        <span class="badge live">公開中</span>
+        <h3>PATTI CROP</h3>
+        <p>動画の上下左右をサクッと切り抜き、Windows・iPhoneで再生できる形式に変換。「再生できない動画」をゼロに。</p>
+        <span class="cta">詳しく見る →</span>
+      </a>
+
+      <div class="tool-card coming">
+        <span class="emoji">🌱</span>
+        <h3>COMING SOON</h3>
+        <p>次のツールが育っています。<br>「こんなツールが欲しい」も募集中。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 広告枠 -->
+  <section id="sponsor">
+    <h2>📣 <span class="accent">SPONSOR</span></h2>
+    <p class="section-lead">この棚を支えてくれるスポンサーの枠です。</p>
+    <div id="ad-slots"></div>
+    <div class="sponsor-box" id="sponsor-box" style="display:none">
+      <h3 id="sponsor-title"></h3>
+      <p id="sponsor-text"></p>
+      <a class="btn" id="sponsor-cta" href="#"
+         onclick="gtag('event','sponsor_contact_click')"></a>
+    </div>
+  </section>
+
+  <!-- 読みもの -->
+  <section id="stories">
+    <h2>📖 読みもの</h2>
+    <p class="section-lead">ツールの裏側と、創作の実験室。</p>
+    <div class="grid">
+      <a class="read-card" href="https://ikemotodir.github.io/patti-scribe/story.html"
+         onclick="gtag('event','story_click',{page:'scribe-story'})">
+        <h3>PATTI SCRIBE 開発の全記録</h3>
+        <p>エンジニア経験ゼロの番組ディレクターが、AIと組んでアプリを世界に公開するまでの物語。</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a class="read-card" href="https://ikemotodir.github.io/chara-chara-lab/"
+         onclick="gtag('event','story_click',{page:'chara-chara-lab'})">
+        <h3>CHARA CHARA LAB</h3>
+        <p>キャラクターの実験室。描いて、試して、記録する。IPビジネス研究ノート。</p>
+        <span class="cta">のぞく →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>🏠 STUDIO PATTI について</h2>
+    <div class="about-box">
+      <p>合同会社スタジオパッチ（愛知県一宮市）。テレビ番組・YouTubeの映像制作をしながら、絵本を描き、AIと一緒にツールを開発しています。</p>
+      <p>ここに並ぶツールは、ぜんぶ「自分たちが現場で本気で困ったこと」から生まれました。同じ困りごとを持つクリエイターの時間が、少しでも創ることに使えますように。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>※本サイトで配布するアプリの利用によって生じたいかなる損害・トラブルについても、当社は一切の責任を負いません。自己責任でご利用ください。</p>
+  <p>※本サイトはアクセス解析を利用しています。各アプリ本体の動作とは無関係で、あなたのデータが送信されることはありません。</p>
+  <p>© 2026 STUDIO PATTI LLC ── 合同会社スタジオパッチ（愛知県一宮市）</p>
+</footer>
+
+<script>
+  // config.json を読み込んで「お知らせ」「広告枠」「スポンサー募集」を描画する。
+  // GitHub上の config.json を書き換えるだけで、ページ本体を触らずに中身を差し替えられる。
+  fetch('config.json?v=' + Date.now())
+    .then(function (res) { return res.json(); })
+    .then(function (cfg) {
+      // お知らせバー
+      if (cfg.notice && cfg.notice.enabled && cfg.notice.text) {
+        var bar = document.getElementById('notice-bar');
+        bar.innerHTML = cfg.notice.url
+          ? '<a href="' + cfg.notice.url + '">' + cfg.notice.text + '</a>'
+          : cfg.notice.text;
+        bar.style.display = 'block';
+      }
+      // 広告枠
+      var slots = document.getElementById('ad-slots');
+      (cfg.ads || []).forEach(function (ad) {
+        if (!ad.enabled) return;
+        var el = document.createElement(ad.url && ad.url !== '#' ? 'a' : 'div');
+        el.className = 'ad-slot';
+        if (ad.url && ad.url !== '#') {
+          el.href = ad.url;
+          el.target = '_blank';
+          el.rel = 'noopener';
+          el.addEventListener('click', function () {
+            gtag('event', 'ad_click', { ad_id: ad.id });
+          });
+        }
+        el.innerHTML =
+          '<span class="ad-label">' + (ad.label || 'PR') + '</span>' +
+          (ad.image ? '<img src="' + ad.image + '" alt="">' : '') +
+          '<div class="ad-body"><h3>' + (ad.title || '') + '</h3><p>' + (ad.text || '') + '</p></div>';
+        slots.appendChild(el);
+      });
+      // スポンサー募集
+      if (cfg.sponsor && cfg.sponsor.enabled) {
+        document.getElementById('sponsor-title').textContent = cfg.sponsor.title;
+        document.getElementById('sponsor-text').textContent = cfg.sponsor.text;
+        var cta = document.getElementById('sponsor-cta');
+        cta.textContent = cfg.sponsor.contact_text;
+        cta.href = cfg.sponsor.contact_url || '#';
+        document.getElementById('sponsor-box').style.display = 'block';
+      }
+    })
+    .catch(function () { /* config.jsonが読めなくてもページ本体は表示される */ });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>広告掲載のご相談 ── PATTI CREATIVE PRODUCT</title>
+<meta name="description" content="PATTI CREATIVE PRODUCT の広告掲載に関するお問い合わせフォームです。">
+<meta name="theme-color" content="#1a1a24">
+<meta name="robots" content="noindex">
+
+<!-- SNSシェア時のプレビュー（OGP / Twitterカード） -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PATTI CREATIVE PRODUCT">
+<meta property="og:title" content="広告掲載のご相談 ── PATTI CREATIVE PRODUCT">
+<meta property="og:description" content="PATTI CREATIVE PRODUCT は、仲介なしで直接ご相談を受け付けています。">
+<meta property="og:url" content="https://ikemotodir.github.io/contact.html">
+<meta property="og:image" content="https://ikemotodir.github.io/assets/patti_logo.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C9RFZES8ZS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C9RFZES8ZS');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/patti_logo.png">
+
+<style>
+  :root {
+    --pink: #D6336C;
+    --yellow: #FFC400;
+    --bg: #1a1a24;
+    --card: #232331;
+    --border: #2c2c3a;
+    --text: #ffffff;
+    --text-sub: #cccccc;
+    --text-dim: #bbbbbb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-weight: 500;
+    line-height: 1.8;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+
+  header {
+    text-align: center;
+    padding: 48px 20px 24px;
+  }
+  header img.logo { width: 72px; height: auto; margin-bottom: 12px; }
+  header h1 {
+    font-weight: 900;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    letter-spacing: .03em;
+  }
+  header h1 .accent { color: var(--pink); }
+  header .tagline { margin-top: 10px; color: var(--text-sub); font-size: .95rem; }
+  .back-link {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--text-dim);
+    font-size: .85rem;
+    text-decoration: none;
+  }
+  .back-link:hover { color: var(--yellow); }
+
+  main { padding-bottom: 48px; }
+
+  .form-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+  }
+  .field { margin-bottom: 20px; }
+  .field label {
+    display: block;
+    font-weight: 700;
+    font-size: .95rem;
+    margin-bottom: 8px;
+  }
+  .field .req { color: var(--pink); font-size: .8rem; margin-left: 6px; }
+  .field .opt { color: var(--text-dim); font-size: .8rem; margin-left: 6px; }
+  .field input,
+  .field textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 12px 14px;
+    transition: border-color .15s ease;
+  }
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--pink);
+  }
+  .field textarea { resize: vertical; min-height: 96px; }
+  .field .err { color: var(--pink); font-size: .8rem; margin-top: 6px; display: none; }
+
+  .btn {
+    display: block;
+    width: 100%;
+    background: var(--pink);
+    color: #fff;
+    border: none;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 14px;
+    border-radius: 999px;
+    box-shadow: 0 6px 24px rgba(214,51,108,.45);
+    cursor: pointer;
+    transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+
+  .note {
+    color: var(--text-dim);
+    font-size: .82rem;
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .fallback {
+    display: none;
+    margin-top: 20px;
+    background: var(--bg);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    font-size: .9rem;
+    color: var(--text-sub);
+  }
+  .fallback strong { color: var(--yellow); font-weight: 700; user-select: all; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 20px 44px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: .78rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="logo" src="assets/patti_logo.png" alt="PATTI ロゴ">
+  <h1>広告掲載の<span class="accent">ご相談</span></h1>
+  <p class="tagline">PATTI CREATIVE PRODUCT は、仲介なしで直接ご相談を受け付けています。</p>
+  <a class="back-link" href="index.html">← ツールの棚にもどる</a>
+</header>
+
+<main class="wrap">
+  <div class="form-card">
+    <form id="contact-form" novalidate>
+
+      <div class="field">
+        <label for="f-name">お名前・会社名<span class="req">必須</span></label>
+        <input type="text" id="f-name" name="name" autocomplete="organization">
+        <div class="err" id="err-name">お名前または会社名をご記入ください。</div>
+      </div>
+
+      <div class="field">
+        <label for="f-email">ご返信先メールアドレス<span class="req">必須</span></label>
+        <input type="email" id="f-email" name="email" autocomplete="email" placeholder="example@mail.com">
+        <div class="err" id="err-email">メールアドレスをご確認ください。</div>
+      </div>
+
+      <div class="field">
+        <label for="f-content">掲載したい内容（商品・サービスなど）<span class="req">必須</span></label>
+        <textarea id="f-content" name="content" placeholder="広告で紹介したい商品・サービス、リンク先URLなどをご記入ください。"></textarea>
+        <div class="err" id="err-content">掲載したい内容をご記入ください。</div>
+      </div>
+
+      <div class="field">
+        <label for="f-budget">ご希望の期間・ご予算感<span class="opt">任意</span></label>
+        <textarea id="f-budget" name="budget" placeholder="（例）3ヶ月ほど / ご予算〇〇円くらい など。お決まりでなければ空欄でOKです。"></textarea>
+      </div>
+
+      <button type="submit" class="btn">この内容でメールを作成する ✉️</button>
+      <p class="note">送信ボタンを押すと、ご入力内容が入ったメール作成画面が開きます。<br>最後にご自身の「送信」を押して完了です。</p>
+    </form>
+
+    <div class="fallback" id="fallback">
+      メールアプリが自動で開かない場合は、下記アドレス宛に直接お送りください。<br>
+      <strong id="fallback-addr"></strong>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2026 STUDIO PATTI LLC ── 合同会社スタジオパッチ（愛知県一宮市）
+</footer>
+
+<script>
+  // 送信先アドレスは、スパム収集を避けるためJSで組み立てる。
+  // 変更する場合はこの2行だけ書き換える。
+  var MAIL_USER = 'mm.arrowz.39';
+  var MAIL_DOMAIN = 'gmail.com';
+  var TO = MAIL_USER + '@' + MAIL_DOMAIN;
+
+  document.getElementById('fallback-addr').textContent = TO;
+
+  var form = document.getElementById('contact-form');
+
+  function showErr(id, show) {
+    document.getElementById('err-' + id).style.display = show ? 'block' : 'none';
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var name = document.getElementById('f-name').value.trim();
+    var email = document.getElementById('f-email').value.trim();
+    var content = document.getElementById('f-content').value.trim();
+    var budget = document.getElementById('f-budget').value.trim();
+
+    var ok = true;
+    showErr('name', false); showErr('email', false); showErr('content', false);
+    if (!name) { showErr('name', true); ok = false; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('email', true); ok = false; }
+    if (!content) { showErr('content', true); ok = false; }
+    if (!ok) return;
+
+    gtag('event', 'sponsor_contact_submit');
+
+    var subject = '【広告掲載のご相談】PATTI CREATIVE PRODUCT';
+    var body =
+      'お名前・会社名: ' + name + '\n' +
+      'ご返信先: ' + email + '\n\n' +
+      '― 掲載したい内容 ―\n' + content + '\n\n' +
+      '― ご希望の期間・ご予算感 ―\n' + (budget || '（未記入）') + '\n\n' +
+      '――――――――――――――\n' +
+      'このメールは PATTI CREATIVE PRODUCT の広告相談フォームから作成されました。';
+
+    var mailto = 'mailto:' + TO +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailto;
+
+    // メールアプリが開かなかった人向けに、宛先を表示しておく
+    document.getElementById('fallback').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>

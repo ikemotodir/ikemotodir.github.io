@@ -1,0 +1,34 @@
+{
+  "notice": {
+    "enabled": false,
+    "text": "",
+    "url": ""
+  },
+  "ads": [
+    {
+      "id": "ad-1",
+      "enabled": true,
+      "label": "PR",
+      "title": "池本将【AI開発するパパ絵本作家】",
+      "text": "PATTIシリーズの開発プロセスは、Instagramで発信中。「AIでつくる」の裏側を全部見せます。",
+      "image": "",
+      "url": "https://www.instagram.com/ikemotodir/"
+    },
+    {
+      "id": "ad-2",
+      "enabled": true,
+      "label": "PR",
+      "title": "CHARA CHARA LAB",
+      "text": "キャラクターの実験室。描いて、試して、記録する。IPビジネス研究ノート、公開中。",
+      "image": "",
+      "url": "https://ikemotodir.github.io/chara-chara-lab/"
+    }
+  ],
+  "sponsor": {
+    "enabled": true,
+    "title": "この枠に、あなたの広告を。",
+    "text": "PATTI CREATIVE PRODUCT は、クリエイターが集まる無料ツールの棚です。広告は自社で直接ご相談を受け付けています。仲介システムなし、話が早いのが自慢です。",
+    "contact_text": "広告掲載の相談をする",
+    "contact_url": "contact.html"
+  }
+}
