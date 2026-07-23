@@ -9,9 +9,9 @@
       "id": "ad-1",
       "enabled": true,
       "label": "PR",
-      "title": "池本将【AI開発するパパ絵本作家】",
-      "text": "PATTIシリーズの開発プロセスは、Instagramで発信中。「AIでつくる」の裏側を全部見せます。",
-      "image": "",
+      "title": "合同会社スタジオパッチ",
+      "text": "「AI開発するパパ絵本作家」としてInstagramで発信中。PATTIシリーズの開発の裏側を全部見せます。",
+      "image": "assets/logo_studio_patti.png",
       "url": "https://www.instagram.com/ikemotodir/"
     },
     {
@@ -20,7 +20,7 @@
       "label": "PR",
       "title": "CHARA CHARA LAB",
       "text": "キャラクターの実験室。描いて、試して、記録する。IPビジネス研究ノート、公開中。",
-      "image": "",
+      "image": "assets/logo_chara_chara_lab.png",
       "url": "https://ikemotodir.github.io/chara-chara-lab/"
     }
   ],
@@ -30,5 +30,9 @@
     "text": "PATTI CREATIVE PRODUCT は、クリエイターが集まる無料ツールの棚です。広告は自社で直接ご相談を受け付けています。仲介システムなし、話が早いのが自慢です。",
     "contact_text": "広告掲載の相談をする",
     "contact_url": "contact.html"
+  },
+  "downloads": {
+    "enabled": true,
+    "repos": ["patti-scribe", "patti-crop", "patti-shot"]
   }
 }

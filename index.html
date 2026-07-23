@@ -109,6 +109,19 @@
     font-size: .85rem;
     color: var(--text-sub);
   }
+  /* 累計ダウンロード数(GitHub Releases合算)。取得成功時のみJSが表示する */
+  #dl-counter {
+    display: none;
+    margin: 14px auto 0;
+    width: fit-content;
+    background: rgba(255,196,0,.1);
+    border: 1px solid var(--yellow);
+    border-radius: 999px;
+    padding: 6px 20px;
+    font-size: .9rem;
+    color: var(--text-sub);
+  }
+  #dl-counter b { color: var(--yellow); font-weight: 900; font-size: 1.05rem; }
 
   section { padding: 40px 0; }
   h2 {
@@ -193,18 +206,32 @@
     transition: border-color .15s ease;
   }
   .ad-slot:hover { border-color: var(--yellow); }
-  .ad-slot img { max-width: 160px; border-radius: 8px; }
+  /* 広告ロゴ: 左側・正方形で統一。読み込み失敗時はJSで除去して枠は崩さない */
+  .ad-slot img.ad-logo {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: #fff;
+    object-fit: contain;
+    padding: 4px;
+  }
   .ad-slot .ad-label {
     background: var(--border);
     color: var(--text-dim);
     border-radius: 4px;
     font-size: .7rem;
     padding: 2px 8px;
-    align-self: flex-start;
-    flex-shrink: 0;
+    display: inline-block;
+    margin-bottom: 4px;
   }
+  .ad-slot .ad-body { min-width: 0; }
   .ad-slot .ad-body h3 { font-size: 1.05rem; font-weight: 700; }
   .ad-slot .ad-body p { font-size: .9rem; color: var(--text-sub); }
+  @media (max-width: 480px) {
+    .ad-slot { gap: 12px; padding: 16px; }
+    .ad-slot img.ad-logo { width: 52px; height: 52px; border-radius: 13px; }
+  }
 
   .sponsor-box {
     background: linear-gradient(135deg, rgba(214,51,108,.12), rgba(255,196,0,.08));
@@ -285,6 +312,7 @@
     <span>✅ 登録不要</span>
     <span>✅ データはあなたのPCの中だけ</span>
   </div>
+  <div id="dl-counter">⬇ 累計ダウンロード数 <b id="dl-count-num"></b></div>
 </header>
 
 <main class="wrap">
@@ -395,7 +423,7 @@
           : cfg.notice.text;
         bar.style.display = 'block';
       }
-      // 広告枠
+      // 広告枠(ロゴは左側。枠全体が1つのリンクなので、ロゴにもテキストと同じ遷移先が付く)
       var slots = document.getElementById('ad-slots');
       (cfg.ads || []).forEach(function (ad) {
         if (!ad.enabled) return;
@@ -410,11 +438,18 @@
           });
         }
         el.innerHTML =
-          '<span class="ad-label">' + (ad.label || 'PR') + '</span>' +
-          (ad.image ? '<img src="' + ad.image + '" alt="">' : '') +
-          '<div class="ad-body"><h3>' + (ad.title || '') + '</h3><p>' + (ad.text || '') + '</p></div>';
+          (ad.image ? '<img class="ad-logo" src="' + ad.image + '" alt="">' : '') +
+          '<div class="ad-body"><span class="ad-label">' + (ad.label || 'PR') + '</span>' +
+          '<h3>' + (ad.title || '') + '</h3><p>' + (ad.text || '') + '</p></div>';
+        var logo = el.querySelector('img.ad-logo');
+        if (logo) {
+          // 画像が読み込めなかったらロゴだけ外す(枠のレイアウトは崩さない)
+          logo.addEventListener('error', function () { logo.remove(); });
+        }
         slots.appendChild(el);
       });
+      // 累計ダウンロード数(GitHub Releases合算)
+      initDownloadCounter(cfg.downloads);
       // スポンサー募集
       if (cfg.sponsor && cfg.sponsor.enabled) {
         document.getElementById('sponsor-title').textContent = cfg.sponsor.title;
@@ -426,6 +461,51 @@
       }
     })
     .catch(function () { /* config.jsonが読めなくてもページ本体は表示される */ });
+
+  // ── 累計ダウンロード数 ──────────────────────────────
+  // GitHub Releases の各アセットの download_count を全リポジトリ分合算して表示する。
+  // ・GitHub APIは未認証だと60回/時の制限があるため、結果は1時間 localStorage にキャッシュ
+  // ・取得に失敗したら「0」は絶対に出さない。古いキャッシュがあればそれを使い、無ければ枠ごと非表示のまま
+  function initDownloadCounter(conf) {
+    if (!conf || !conf.enabled || !(conf.repos || []).length) return;
+    var CACHE_KEY = 'patti_dl_total_v1';
+    var TTL = 60 * 60 * 1000; // 1時間
+
+    function show(total) {
+      if (typeof total !== 'number' || !isFinite(total) || total <= 0) return;
+      document.getElementById('dl-count-num').textContent = total.toLocaleString('ja-JP');
+      document.getElementById('dl-counter').style.display = 'block';
+    }
+    function readCache() {
+      try {
+        var c = JSON.parse(localStorage.getItem(CACHE_KEY));
+        if (c && typeof c.total === 'number' && typeof c.ts === 'number') return c;
+      } catch (e) {}
+      return null;
+    }
+
+    var cached = readCache();
+    if (cached && (Date.now() - cached.ts) < TTL) { show(cached.total); return; }
+
+    Promise.all(conf.repos.map(function (repo) {
+      return fetch('https://api.github.com/repos/ikemotodir/' + repo + '/releases')
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (releases) {
+          return releases.reduce(function (sum, rel) {
+            return sum + (rel.assets || []).reduce(function (s, a) {
+              return s + (a.download_count || 0);
+            }, 0);
+          }, 0);
+        });
+    })).then(function (counts) {
+      var total = counts.reduce(function (a, b) { return a + b; }, 0);
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ total: total, ts: Date.now() })); } catch (e) {}
+      show(total);
+    }).catch(function () {
+      // 失敗時: 期限切れでも過去の実測値があればそれを表示(事実の数字)。無ければ非表示のまま
+      if (cached) show(cached.total);
+    });
+  }
 </script>
 
 </body>
