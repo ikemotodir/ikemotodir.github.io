@@ -344,7 +344,7 @@
       <a class="tool-card" href="https://ikemotodir.github.io/patti-crop/"
          onclick="gtag('event','tool_click',{tool:'patti-crop'})">
         <span class="emoji">✂️</span>
-        <span class="badge live">公開中</span>
+        <span class="badge live">公開中<span id="cropVer"></span></span>
         <h3>PATTI CROP</h3>
         <p>動画の上下左右をサクッと切り抜き、Windows・iPhoneで再生できる形式に変換。「再生できない動画」をゼロに。</p>
         <span class="cta">詳しく見る →</span>
@@ -506,6 +506,18 @@
       if (cached) show(cached.total);
     });
   }
+</script>
+
+<script>
+// PATTI CROP の最新バージョンを動的表示（取得失敗時は何も出さない）
+fetch('https://api.github.com/repos/ikemotodir/patti-crop/releases/latest')
+  .then(function (r) { return r.ok ? r.json() : null; })
+  .then(function (d) {
+    var tag = d && d.tag_name ? String(d.tag_name).replace(/^v/i, '') : null;
+    if (!tag || !/^\d/.test(tag)) return;
+    document.getElementById('cropVer').textContent = ' v' + tag;
+  })
+  .catch(function () {});
 </script>
 
 </body>
