@@ -350,6 +350,24 @@
         <span class="cta">詳しく見る →</span>
       </a>
 
+      <a class="tool-card" href="https://ikemotodir.github.io/patti-pixel/"
+         onclick="gtag('event','tool_click',{tool:'patti-pixel'})">
+        <span class="emoji">🟧</span>
+        <span class="badge live">公開中<span id="pixelVer"></span></span>
+        <h3>PATTI PIXEL</h3>
+        <p>写真もイラストも、入れるだけでドット絵（ピクセルアート）に。1ドットずつの塗り直しもできて、誰でもピクセルアーティストに。</p>
+        <span class="cta">詳しく見る →</span>
+      </a>
+
+      <a class="tool-card" href="https://ikemotodir.github.io/patti-miniature/"
+         onclick="gtag('event','tool_click',{tool:'patti-miniature'})">
+        <span class="emoji">🏙</span>
+        <span class="badge live">公開中<span id="miniatureVer"></span></span>
+        <h3>PATTI MINIATURE</h3>
+        <p>風景写真が、おもちゃの箱庭（ジオラマ）みたいに。ピントの位置を選ぶだけで、街がミニチュアに早変わり。</p>
+        <span class="cta">詳しく見る →</span>
+      </a>
+
       <div class="tool-card coming">
         <span class="emoji">🌱</span>
         <h3>COMING SOON</h3>
@@ -509,15 +527,22 @@
 </script>
 
 <script>
-// PATTI CROP の最新バージョンを動的表示（取得失敗時は何も出さない）
-fetch('https://api.github.com/repos/ikemotodir/patti-crop/releases/latest')
-  .then(function (r) { return r.ok ? r.json() : null; })
-  .then(function (d) {
-    var tag = d && d.tag_name ? String(d.tag_name).replace(/^v/i, '') : null;
-    if (!tag || !/^\d/.test(tag)) return;
-    document.getElementById('cropVer').textContent = ' v' + tag;
-  })
-  .catch(function () {});
+// 各ツールの最新バージョンを動的表示（取得失敗時はそのツールだけ何も出さない）
+[
+  { repo: 'patti-crop',      el: 'cropVer' },
+  { repo: 'patti-pixel',     el: 'pixelVer' },
+  { repo: 'patti-miniature', el: 'miniatureVer' }
+].forEach(function (t) {
+  fetch('https://api.github.com/repos/ikemotodir/' + t.repo + '/releases/latest')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      var tag = d && d.tag_name ? String(d.tag_name).replace(/^v/i, '') : null;
+      if (!tag || !/^\d/.test(tag)) return;
+      var el = document.getElementById(t.el);
+      if (el) el.textContent = ' v' + tag;
+    })
+    .catch(function () {});
+});
 </script>
 
 </body>

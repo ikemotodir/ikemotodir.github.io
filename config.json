@@ -33,6 +33,6 @@
   },
   "downloads": {
     "enabled": true,
-    "repos": ["patti-scribe", "patti-crop", "patti-shot"]
+    "repos": ["patti-scribe", "patti-crop", "patti-shot", "patti-pixel", "patti-miniature"]
   }
 }
