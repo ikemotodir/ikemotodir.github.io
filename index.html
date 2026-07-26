@@ -287,6 +287,66 @@
   .about-box p { color: var(--text-sub); font-size: .95rem; }
   .about-box p + p { margin-top: 12px; }
 
+  /* 対応環境チップ(ツールカード内) */
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chips i {
+    font-style: normal;
+    font-size: .72rem;
+    color: var(--text-dim);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 2px 10px;
+  }
+  .chips i.hot { color: var(--yellow); border-color: var(--yellow); }
+
+  /* インストール不要で今すぐ試すストリップ */
+  .try-box {
+    background: linear-gradient(135deg, rgba(255,196,0,.10), rgba(214,51,108,.08));
+    border: 1px solid var(--yellow);
+    border-radius: 16px;
+    padding: 26px 24px;
+    text-align: center;
+  }
+  .try-box h3 { font-weight: 900; font-size: 1.15rem; }
+  .try-box p { color: var(--text-sub); font-size: .9rem; margin: 8px auto 16px; max-width: 560px; }
+  .try-btn {
+    display: inline-block;
+    background: var(--yellow);
+    color: #1a1a24;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: .95rem;
+    padding: 11px 26px;
+    border-radius: 999px;
+    margin: 4px 6px;
+    transition: transform .15s ease;
+  }
+  .try-btn:hover { transform: translateY(-2px); }
+
+  /* 困ったときは(共通FAQ) */
+  #help details {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 4px 18px;
+    margin-bottom: 10px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #help summary {
+    font-weight: 700;
+    cursor: pointer;
+    padding: 12px 0;
+    list-style: none;
+  }
+  #help summary::-webkit-details-marker { display: none; }
+  #help summary::before { content: "＋ "; color: var(--pink); font-weight: 900; }
+  #help details[open] summary::before { content: "− "; }
+  #help details p { color: var(--text-sub); font-size: .92rem; padding: 0 0 14px; }
+  #help details b { color: var(--yellow); }
+
   footer {
     border-top: 1px solid var(--border);
     margin-top: 40px;
@@ -326,18 +386,20 @@
       <a class="tool-card" href="https://ikemotodir.github.io/patti-scribe/"
          onclick="gtag('event','tool_click',{tool:'patti-scribe'})">
         <span class="emoji">🎙️</span>
-        <span class="badge live">公開中</span>
+        <span class="badge live">公開中<span id="scribeVer"></span></span>
         <h3>PATTI SCRIBE</h3>
-        <p>無料の動画文字起こしツール。データがネットに出ない、完全ローカルAI。EDIUSテロップ自動生成にも対応。</p>
+        <p>動画・音声をドラッグするだけでAIが文字起こし。Wi-Fiを切っても動く完全ローカルAIだから、放送前素材も安心。SRT字幕・EDIUSテロップも自動生成。</p>
+        <span class="chips"><i>Windows</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
 
       <a class="tool-card" href="https://ikemotodir.github.io/patti-shot/"
          onclick="gtag('event','tool_click',{tool:'patti-shot'})">
         <span class="emoji">📸</span>
-        <span class="badge live">公開中</span>
+        <span class="badge live">公開中<span id="shotVer"></span></span>
         <h3>PATTI SHOT</h3>
         <p>Webページを一番下まで丸ごと1枚のPNG / PDFに保存するWindows用アプリ。会議資料の保存や、AIにまるごと読ませたい時にも。</p>
+        <span class="chips"><i>Windows</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
 
@@ -346,7 +408,8 @@
         <span class="emoji">✂️</span>
         <span class="badge live">公開中<span id="cropVer"></span></span>
         <h3>PATTI CROP</h3>
-        <p>動画の上下左右をサクッと切り抜き、Windows・iPhoneで再生できる形式に変換。「再生できない動画」をゼロに。</p>
+        <p>動画の上下左右をサクッと切り抜き、Windows・iPhoneで再生できる形式に変換。「再生できない動画」をゼロに。複数ファイルの一括処理もOK。</p>
+        <span class="chips"><i>Windows</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
 
@@ -356,6 +419,7 @@
         <span class="badge live">公開中<span id="pixelVer"></span></span>
         <h3>PATTI PIXEL</h3>
         <p>写真もイラストも、入れるだけでドット絵（ピクセルアート）に。1ドットずつの塗り直しもできて、誰でもピクセルアーティストに。</p>
+        <span class="chips"><i>Windows</i><i class="hot">ブラウザOK（Mac・スマホ）</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
 
@@ -365,6 +429,7 @@
         <span class="badge live">公開中<span id="miniatureVer"></span></span>
         <h3>PATTI MINIATURE</h3>
         <p>風景写真が、おもちゃの箱庭（ジオラマ）みたいに。ピントの位置を選ぶだけで、街がミニチュアに早変わり。</p>
+        <span class="chips"><i>Windows</i><i class="hot">ブラウザOK（Mac・スマホ）</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
 
@@ -374,6 +439,18 @@
         <p>次のツールが育っています。<br>「こんなツールが欲しい」も募集中。</p>
       </div>
 
+    </div>
+  </section>
+
+  <!-- インストール不要ですぐ試す -->
+  <section id="try-now">
+    <div class="try-box">
+      <h3>⚡ インストール不要で、今すぐ試せる</h3>
+      <p>PATTI PIXEL と PATTI MINIATURE は<b style="color:var(--yellow)">ブラウザ版</b>あり。ダウンロードなし・Mac・スマホでも、開いたその場で使えます。</p>
+      <a class="try-btn" href="https://ikemotodir.github.io/patti-pixel/app/"
+         onclick="gtag('event','browser_app_click',{tool:'patti-pixel'})">🟧 PIXEL をブラウザで開く</a>
+      <a class="try-btn" href="https://ikemotodir.github.io/patti-miniature/app/"
+         onclick="gtag('event','browser_app_click',{tool:'patti-miniature'})">🏙 MINIATURE をブラウザで開く</a>
     </div>
   </section>
 
@@ -408,6 +485,31 @@
         <span class="cta">のぞく →</span>
       </a>
     </div>
+  </section>
+
+  <!-- 困ったときは(全プロダクト共通FAQ) -->
+  <section id="help">
+    <h2>🛟 困ったときは</h2>
+    <p class="section-lead">ダウンロードしたツールでつまずいた時の、よくある原因と対処法。</p>
+
+    <details><summary>「WindowsによってPCが保護されました」と出た</summary>
+      <p><b>「詳細情報」→「実行」</b>の順にクリックしてください。署名のない個人開発ソフト全般に出るWindows標準の画面で、ウイルス検出ではありません。<br>
+      事前に回避するには：ダウンロードしたzipを右クリック→「プロパティ」→下部の<b>「許可する」にチェック</b>してから展開します。</p></details>
+
+    <details><summary>ウイルス対策ソフトに止められた・デスクトップにアイコンが作られない</summary>
+      <p>ごくまれに、ショートカット作成などが誤検知でブロックされることがあります。アプリ自体は安全に動作し、ソースコードは全部GitHubで公開しています。<br>
+      対処：①フォルダ内の起動ファイル（PattiCrop.vbs など）を直接ダブルクリックすれば使えます ②対策ソフトの検疫／ブロック履歴から「許可」する ③アプリのフォルダを対策ソフトの<b>除外設定（例外）</b>に追加する<br>
+      それでも困ったら：<b>PIXEL と MINIATURE はブラウザ版</b>があるので、上の「今すぐ試せる」からどうぞ。ダウンロード不要なので、この問題は原理的に起きません。</p></details>
+
+    <details><summary>PATTI SCRIBE の初回の文字起こしが、エラーで止まる</summary>
+      <p>セキュリティソフトの「HTTPS検査（SSLスキャン）」機能が、初回だけ必要なAIモデルのダウンロードを妨げることがあります（Avast / AVG / Kaspersky / ESET などで起こり得ます）。<br>
+      対処：HTTPS検査を<b>一時的にOFF</b>にして初回のダウンロードだけ済ませてください（終わったらONに戻してOK）。<b>モデルのダウンロードは最初の1回だけ</b>で、以降はWi-Fiを切っても動きます。</p></details>
+
+    <details><summary>安定して使うための置き場所のコツ</summary>
+      <p>解凍したフォルダは、<b>日本語やスペースを含まない場所</b>に置くと最も安定します（例：<b>C:\tools\patti-scribe</b>）。デスクトップやダウンロードフォルダのままでも動きますが、不調のときはまず置き場所を疑ってみてください。</p></details>
+
+    <details><summary>不具合報告・「こんなツールが欲しい」はどこへ？</summary>
+      <p>Instagram（<a href="https://www.instagram.com/ikemotodir/" target="_blank" rel="noopener" style="color:var(--yellow)">@ikemotodir</a>）のDMで受け付けています。「どのツールで・何をしたら・何が起きたか」を書いてもらえると、直せる速度が上がります。</p></details>
   </section>
 
   <!-- About -->
@@ -529,6 +631,8 @@
 <script>
 // 各ツールの最新バージョンを動的表示（取得失敗時はそのツールだけ何も出さない）
 [
+  { repo: 'patti-scribe',    el: 'scribeVer' },
+  { repo: 'patti-shot',      el: 'shotVer' },
   { repo: 'patti-crop',      el: 'cropVer' },
   { repo: 'patti-pixel',     el: 'pixelVer' },
   { repo: 'patti-miniature', el: 'miniatureVer' }
