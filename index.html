@@ -85,8 +85,8 @@
   }
   header h1 .accent { color: var(--pink); }
   header .tagline {
-    margin-top: 12px;
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin: 6px 0 4px;
+    font-size: clamp(.92rem, 2.2vw, 1.05rem);
     color: var(--text-sub);
   }
   header .sub {
@@ -315,13 +315,13 @@
   }
   .about-link:hover { text-decoration: underline; }
 
-  /* パッチクリエイターズプログラム(最重要導線) */
+  /* パッチクリエイターズプログラム(最重要導線・イエローベースでページ内唯一の光る枠) */
   .creators-box {
     display: flex;
     align-items: center;
     gap: 26px;
-    background: linear-gradient(120deg, rgba(214,51,108,.22), rgba(255,196,0,.16));
-    border: 2px solid var(--pink);
+    background: linear-gradient(120deg, rgba(255,196,0,.2), rgba(255,196,0,.07));
+    border: 2px solid var(--yellow);
     border-radius: 20px;
     padding: 30px 28px;
     text-decoration: none;
@@ -330,12 +330,12 @@
   }
   .creators-box:hover { transform: translateY(-3px); }
   @keyframes creatorsGlow {
-    0%, 100% { box-shadow: 0 0 16px rgba(214,51,108,.28); }
-    50% { box-shadow: 0 0 42px rgba(255,196,0,.4); }
+    0%, 100% { box-shadow: 0 0 14px rgba(255,196,0,.3); }
+    50% { box-shadow: 0 0 36px rgba(255,196,0,.5); }
   }
   .creators-box img { width: 92px; height: auto; flex-shrink: 0; }
   .creators-kicker {
-    color: var(--yellow);
+    color: var(--pink);
     font-weight: 900;
     letter-spacing: .14em;
     font-size: .8rem;
@@ -354,12 +354,12 @@
   .creators-body p b { color: var(--yellow); }
   .creators-cta {
     display: inline-block;
-    background: var(--pink);
-    color: #fff;
-    font-weight: 700;
+    background: var(--yellow);
+    color: #1a1a24;
+    font-weight: 900;
     padding: 11px 30px;
     border-radius: 999px;
-    box-shadow: 0 6px 24px rgba(214,51,108,.45);
+    box-shadow: 0 6px 24px rgba(255,196,0,.4);
   }
   @media (max-width: 560px) {
     .creators-box { flex-direction: column; text-align: center; }
@@ -389,10 +389,10 @@
   }
   .chips i.hot { color: var(--yellow); border-color: var(--yellow); }
 
-  /* インストール不要で今すぐ試すストリップ */
+  /* インストール不要で今すぐ試すストリップ(ピンクベース) */
   .try-box {
-    background: linear-gradient(135deg, rgba(255,196,0,.10), rgba(214,51,108,.08));
-    border: 1px solid var(--yellow);
+    background: linear-gradient(135deg, rgba(214,51,108,.16), rgba(214,51,108,.05));
+    border: 1px solid var(--pink);
     border-radius: 16px;
     padding: 26px 24px;
     text-align: center;
@@ -401,8 +401,8 @@
   .try-box p { color: var(--text-sub); font-size: .9rem; margin: 8px auto 16px; max-width: 560px; }
   .try-btn {
     display: inline-block;
-    background: var(--yellow);
-    color: #1a1a24;
+    background: var(--pink);
+    color: #fff;
     text-decoration: none;
     font-weight: 700;
     font-size: .95rem;
@@ -453,13 +453,13 @@
 
 <header>
   <img class="logo" src="assets/patti_chara.png" alt="おばけのパッチ">
-  <h1>PATTI <span class="accent">CREATIVE</span> PRODUCT</h1>
   <p class="tagline">クリエイターが「ちょっと助かる」無料ツール</p>
+  <h1>PATTI <span class="accent">CREATIVE</span> PRODUCT</h1>
   <p class="sub">エンジニア経験０の映像ディレクターが、AIで開発</p>
   <div class="free-badges">
     <span>✅ 全部無料</span>
     <span>✅ 登録不要</span>
-    <span>✅ データはあなたのPCの中だけ</span>
+    <span>✅ データはPCの中だけ</span>
   </div>
   <div id="dl-counter">⬇ 累計ダウンロード数 <b id="dl-count-num"></b></div>
 </header>
@@ -534,12 +534,12 @@
   <!-- インストール不要ですぐ試す -->
   <section id="try-now">
     <div class="try-box">
-      <h3>⚡ インストール不要で、今すぐ試せる</h3>
-      <p>PATTI PIXEL と PATTI MINIATURE は<b style="color:var(--yellow)">ブラウザ版</b>あり。ダウンロードなし・Mac・スマホでも、開いたその場で使えます。</p>
+      <h3>⚡ インストール不要。今すぐ試せる ⚡</h3>
+      <p>PIXEL と MINIATURE は<b style="color:var(--yellow)">ブラウザ版</b>あり。Mac・スマホでも、開いたその場で使えます。</p>
       <a class="try-btn" href="https://ikemotodir.github.io/patti-pixel/app/"
-         onclick="gtag('event','browser_app_click',{tool:'patti-pixel'})">🟧 PIXEL をブラウザで開く</a>
+         onclick="gtag('event','browser_app_click',{tool:'patti-pixel'})">PIXEL をブラウザで開く</a>
       <a class="try-btn" href="https://ikemotodir.github.io/patti-miniature/app/"
-         onclick="gtag('event','browser_app_click',{tool:'patti-miniature'})">🏙 MINIATURE をブラウザで開く</a>
+         onclick="gtag('event','browser_app_click',{tool:'patti-miniature'})">MINIATURE をブラウザで開く</a>
     </div>
   </section>
 
@@ -551,7 +551,7 @@
       <div class="creators-body">
         <span class="creators-kicker">PATTI CREATORS PROGRAM</span>
         <h2>パッチは、みんなで創っていいキャラクター。</h2>
-        <p>おばけのパッチは二次創作OK・販売OK。累計売上200万円まで<b>ロイヤリティ0%</b>。描いても、歌っても、グッズにしても自由。あなたの作品に、パッチを迎えませんか？</p>
+        <p>二次創作OK・販売OK。累計売上200万円まで<b>ロイヤリティ0%</b>。あなたの作品に、パッチを迎えませんか？</p>
         <span class="creators-cta">プログラムを見る →</span>
       </div>
     </a>
