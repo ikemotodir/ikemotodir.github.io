@@ -10,24 +10,24 @@
       "enabled": true,
       "label": "PR",
       "title": "合同会社スタジオパッチ",
-      "text": "「AI開発するパパ絵本作家」としてInstagramで発信中。PATTIシリーズの開発の裏側を全部見せます。",
+      "text": "キャラクターコンテンツ、アニメーション、ドキュメンタリー映像などのクリエイティブ事業を展開。",
       "image": "assets/logo_studio_patti.png",
-      "url": "https://www.instagram.com/ikemotodir/"
+      "url": "https://studiopatti.base.shop/"
     },
     {
       "id": "ad-2",
       "enabled": true,
       "label": "PR",
       "title": "CHARA CHARA LAB",
-      "text": "キャラクターの実験室。描いて、試して、記録する。IPビジネス研究ノート、公開中。",
+      "text": "キャラクターの活用やIPビジネスに役立つ記事を毎日2つ発信。",
       "image": "assets/logo_chara_chara_lab.png",
       "url": "https://ikemotodir.github.io/chara-chara-lab/"
     }
   ],
   "sponsor": {
     "enabled": true,
-    "title": "この枠に、あなたの広告を。",
-    "text": "PATTI CREATIVE PRODUCT は、クリエイターが集まる無料ツールの棚です。広告は自社で直接ご相談を受け付けています。仲介システムなし、話が早いのが自慢です。",
+    "title": "法人から個人まで、誰でもスポンサーに",
+    "text": "PATTI CREATIVE PRODUCT は、クリエイターが多く集まるサイトです。広告は自社で直接ご相談を受け付けています。仲介システムなし、話が早いのが自慢です。",
     "contact_text": "広告掲載の相談をする",
     "contact_url": "contact.html"
   },

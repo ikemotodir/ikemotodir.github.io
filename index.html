@@ -74,7 +74,7 @@
     padding: 64px 20px 48px;
   }
   header img.logo {
-    width: 96px;
+    width: 118px;
     height: auto;
     margin-bottom: 16px;
   }
@@ -112,16 +112,18 @@
   /* 累計ダウンロード数(GitHub Releases合算)。取得成功時のみJSが表示する */
   #dl-counter {
     display: none;
-    margin: 14px auto 0;
+    margin: 18px auto 0;
     width: fit-content;
-    background: rgba(255,196,0,.1);
-    border: 1px solid var(--yellow);
+    background: rgba(255,196,0,.14);
+    border: 2px solid var(--yellow);
     border-radius: 999px;
-    padding: 6px 20px;
-    font-size: .9rem;
-    color: var(--text-sub);
+    padding: 10px 30px;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+    box-shadow: 0 0 26px rgba(255,196,0,.28);
   }
-  #dl-counter b { color: var(--yellow); font-weight: 900; font-size: 1.05rem; }
+  #dl-counter b { color: var(--yellow); font-weight: 900; font-size: 1.45rem; }
 
   section { padding: 40px 0; }
   h2 {
@@ -160,6 +162,14 @@
     border-color: var(--pink);
   }
   .tool-card .emoji { font-size: 2rem; line-height: 1; }
+  .tool-card img.tool-logo {
+    height: 48px;
+    width: auto;
+    max-width: 64px;
+    object-fit: contain;
+    border-radius: 10px;
+    align-self: flex-start;
+  }
   .tool-card h3 {
     font-weight: 900;
     font-size: 1.15rem;
@@ -167,7 +177,8 @@
   }
   .tool-card p {
     color: var(--text-sub);
-    font-size: .92rem;
+    font-size: .84rem;
+    line-height: 1.7;
     flex-grow: 1;
   }
   .badge {
@@ -286,6 +297,84 @@
   }
   .about-box p { color: var(--text-sub); font-size: .95rem; }
   .about-box p + p { margin-top: 12px; }
+  .about-h2 img.ghost {
+    height: 34px;
+    width: auto;
+    vertical-align: middle;
+    margin: 0 12px 6px;
+  }
+  .about-h2 img.ghost.flip { transform: scaleX(-1); }
+  .about-link {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    color: var(--yellow);
+    font-weight: 700;
+    font-size: .92rem;
+    text-decoration: none;
+  }
+  .about-link:hover { text-decoration: underline; }
+
+  /* パッチクリエイターズプログラム(最重要導線) */
+  .creators-box {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    background: linear-gradient(120deg, rgba(214,51,108,.22), rgba(255,196,0,.16));
+    border: 2px solid var(--pink);
+    border-radius: 20px;
+    padding: 30px 28px;
+    text-decoration: none;
+    animation: creatorsGlow 2.8s ease-in-out infinite;
+    transition: transform .15s ease;
+  }
+  .creators-box:hover { transform: translateY(-3px); }
+  @keyframes creatorsGlow {
+    0%, 100% { box-shadow: 0 0 16px rgba(214,51,108,.28); }
+    50% { box-shadow: 0 0 42px rgba(255,196,0,.4); }
+  }
+  .creators-box img { width: 92px; height: auto; flex-shrink: 0; }
+  .creators-kicker {
+    color: var(--yellow);
+    font-weight: 900;
+    letter-spacing: .14em;
+    font-size: .8rem;
+  }
+  .creators-body h2 {
+    text-align: left;
+    margin: 6px 0 8px;
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    font-weight: 900;
+  }
+  .creators-body p {
+    color: var(--text-sub);
+    font-size: .93rem;
+    margin-bottom: 14px;
+  }
+  .creators-body p b { color: var(--yellow); }
+  .creators-cta {
+    display: inline-block;
+    background: var(--pink);
+    color: #fff;
+    font-weight: 700;
+    padding: 11px 30px;
+    border-radius: 999px;
+    box-shadow: 0 6px 24px rgba(214,51,108,.45);
+  }
+  @media (max-width: 560px) {
+    .creators-box { flex-direction: column; text-align: center; }
+    .creators-body h2 { text-align: center; }
+  }
+
+  /* 開発の記録: COMING SOON枠 */
+  .read-card.coming-read {
+    border-style: dashed;
+    text-align: center;
+    color: var(--text-dim);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   /* 対応環境チップ(ツールカード内) */
   .chips { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -363,10 +452,10 @@
 <div id="notice-bar"></div>
 
 <header>
-  <img class="logo" src="assets/patti_logo.png" alt="PATTI ロゴ">
+  <img class="logo" src="assets/patti_chara.png" alt="おばけのパッチ">
   <h1>PATTI <span class="accent">CREATIVE</span> PRODUCT</h1>
-  <p class="tagline">クリエイターが「ちょっと助かる」無料ツールの棚。</p>
-  <p class="sub">エンジニア経験ゼロの映像ディレクターが、AIと一緒に創っています。</p>
+  <p class="tagline">クリエイターが「ちょっと助かる」無料ツール</p>
+  <p class="sub">エンジニア経験０の映像ディレクターが、AIで開発</p>
   <div class="free-badges">
     <span>✅ 全部無料</span>
     <span>✅ 登録不要</span>
@@ -379,56 +468,56 @@
 
   <!-- ツール棚 -->
   <section id="tools">
-    <h2>🧰 ツールの棚</h2>
-    <p class="section-lead">現場の「困った」から生まれたツールたち。気になるものからどうぞ。</p>
+    <h2>🧰 ツール一覧 🔧</h2>
+    <p class="section-lead">クリエイティブの現場の「困った」から生まれたツールたち</p>
     <div class="grid">
 
       <a class="tool-card" href="https://ikemotodir.github.io/patti-scribe/"
          onclick="gtag('event','tool_click',{tool:'patti-scribe'})">
-        <span class="emoji">🎙️</span>
+        <img class="tool-logo" src="assets/tool_scribe.png" alt="PATTI SCRIBE ロゴ">
         <span class="badge live">公開中<span id="scribeVer"></span></span>
         <h3>PATTI SCRIBE</h3>
-        <p>動画・音声をドラッグするだけでAIが文字起こし。Wi-Fiを切っても動く完全ローカルAIだから、放送前素材も安心。SRT字幕・EDIUSテロップも自動生成。</p>
+        <p>ドラッグするだけでAI文字起こし。完全ローカルでデータが外に出ない。SRT字幕・EDIUSテロップ対応。</p>
         <span class="chips"><i>Windows</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
 
       <a class="tool-card" href="https://ikemotodir.github.io/patti-shot/"
          onclick="gtag('event','tool_click',{tool:'patti-shot'})">
-        <span class="emoji">📸</span>
+        <img class="tool-logo" src="assets/tool_shot.png" alt="PATTI SHOT ロゴ">
         <span class="badge live">公開中<span id="shotVer"></span></span>
         <h3>PATTI SHOT</h3>
-        <p>Webページを一番下まで丸ごと1枚のPNG / PDFに保存するWindows用アプリ。会議資料の保存や、AIにまるごと読ませたい時にも。</p>
+        <p>Webページを一番下まで丸ごと1枚のPNG / PDFに保存。AIにまるごと読ませたい時にも。</p>
         <span class="chips"><i>Windows</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
 
       <a class="tool-card" href="https://ikemotodir.github.io/patti-crop/"
          onclick="gtag('event','tool_click',{tool:'patti-crop'})">
-        <span class="emoji">✂️</span>
+        <img class="tool-logo" src="assets/tool_crop.png" alt="PATTI CROP ロゴ">
         <span class="badge live">公開中<span id="cropVer"></span></span>
         <h3>PATTI CROP</h3>
-        <p>動画の上下左右をサクッと切り抜き、Windows・iPhoneで再生できる形式に変換。「再生できない動画」をゼロに。複数ファイルの一括処理もOK。</p>
+        <p>動画の上下左右をクロップして、どこでも再生できるMP4に変換。一括処理もOK。</p>
         <span class="chips"><i>Windows</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
 
       <a class="tool-card" href="https://ikemotodir.github.io/patti-pixel/"
          onclick="gtag('event','tool_click',{tool:'patti-pixel'})">
-        <span class="emoji">🟧</span>
+        <img class="tool-logo" src="assets/tool_pixel.png" alt="PATTI PIXEL ロゴ">
         <span class="badge live">公開中<span id="pixelVer"></span></span>
         <h3>PATTI PIXEL</h3>
-        <p>写真もイラストも、入れるだけでドット絵（ピクセルアート）に。1ドットずつの塗り直しもできて、誰でもピクセルアーティストに。</p>
+        <p>写真もイラストも、入れるだけでドット絵に。1ドットずつ塗り直せる本格エディタ付き。</p>
         <span class="chips"><i>Windows</i><i class="hot">ブラウザOK（Mac・スマホ）</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
 
       <a class="tool-card" href="https://ikemotodir.github.io/patti-miniature/"
          onclick="gtag('event','tool_click',{tool:'patti-miniature'})">
-        <span class="emoji">🏙</span>
+        <img class="tool-logo" src="assets/tool_miniature.png" alt="PATTI MINIATURE ロゴ">
         <span class="badge live">公開中<span id="miniatureVer"></span></span>
         <h3>PATTI MINIATURE</h3>
-        <p>風景写真が、おもちゃの箱庭（ジオラマ）みたいに。ピントの位置を選ぶだけで、街がミニチュアに早変わり。</p>
+        <p>風景写真が、おもちゃの箱庭みたいに。ピントの位置を選ぶだけでミニチュア風。</p>
         <span class="chips"><i>Windows</i><i class="hot">ブラウザOK（Mac・スマホ）</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
@@ -454,10 +543,24 @@
     </div>
   </section>
 
+  <!-- パッチクリエイターズプログラム(最重要導線) -->
+  <section id="creators">
+    <a class="creators-box" href="https://ikemotodir.github.io/chara-chara-lab/creators.html"
+       onclick="gtag('event','creators_program_click')">
+      <img src="assets/patti_chara.png" alt="おばけのパッチ">
+      <div class="creators-body">
+        <span class="creators-kicker">PATTI CREATORS PROGRAM</span>
+        <h2>パッチは、みんなで創っていいキャラクター。</h2>
+        <p>おばけのパッチは二次創作OK・販売OK。累計売上200万円まで<b>ロイヤリティ0%</b>。描いても、歌っても、グッズにしても自由。あなたの作品に、パッチを迎えませんか？</p>
+        <span class="creators-cta">プログラムを見る →</span>
+      </div>
+    </a>
+  </section>
+
   <!-- 広告枠 -->
   <section id="sponsor">
-    <h2>📣 <span class="accent">SPONSOR</span></h2>
-    <p class="section-lead">この棚を支えてくれるスポンサーの枠です。</p>
+    <h2>📣 <span class="accent">SPONSOR</span> 📣</h2>
+    <p class="section-lead">PATTI CREATIVE PRODUCTを支えるスポンサーです</p>
     <div id="ad-slots"></div>
     <div class="sponsor-box" id="sponsor-box" style="display:none">
       <h3 id="sponsor-title"></h3>
@@ -467,30 +570,28 @@
     </div>
   </section>
 
-  <!-- 読みもの -->
+  <!-- 開発の記録 -->
   <section id="stories">
-    <h2>📖 読みもの</h2>
-    <p class="section-lead">ツールの裏側と、創作の実験室。</p>
+    <h2>📕 開発の記録 📕</h2>
+    <p class="section-lead">ツールが生まれるまでの裏側、ぜんぶ見せます</p>
     <div class="grid">
       <a class="read-card" href="https://ikemotodir.github.io/patti-scribe/story.html"
          onclick="gtag('event','story_click',{page:'scribe-story'})">
         <h3>PATTI SCRIBE 開発の全記録</h3>
-        <p>エンジニア経験ゼロの番組ディレクターが、AIと組んでアプリを世界に公開するまでの物語。</p>
+        <p>エンジニア経験０の番組ディレクターが、AIと組んでアプリを世界に公開するまでの物語。</p>
         <span class="cta">読む →</span>
       </a>
-      <a class="read-card" href="https://ikemotodir.github.io/chara-chara-lab/"
-         onclick="gtag('event','story_click',{page:'chara-chara-lab'})">
-        <h3>CHARA CHARA LAB</h3>
-        <p>キャラクターの実験室。描いて、試して、記録する。IPビジネス研究ノート。</p>
-        <span class="cta">のぞく →</span>
-      </a>
+      <div class="read-card coming-read">
+        <h3>🌱 COMING SOON</h3>
+        <p>次の開発の記録を準備中。</p>
+      </div>
     </div>
   </section>
 
   <!-- 困ったときは(全プロダクト共通FAQ) -->
   <section id="help">
-    <h2>🛟 困ったときは</h2>
-    <p class="section-lead">ダウンロードしたツールでつまずいた時の、よくある原因と対処法。</p>
+    <h2>🛟 困ったときは 🛟</h2>
+    <p class="section-lead">ダウンロードしたツールでつまずいた時のよくある原因と対処法</p>
 
     <details><summary>「WindowsによってPCが保護されました」と出た</summary>
       <p><b>「詳細情報」→「実行」</b>の順にクリックしてください。署名のない個人開発ソフト全般に出るWindows標準の画面で、ウイルス検出ではありません。<br>
@@ -514,10 +615,12 @@
 
   <!-- About -->
   <section id="about">
-    <h2>🏠 STUDIO PATTI について</h2>
+    <h2 class="about-h2"><img class="ghost" src="assets/patti_silhouette.png" alt="">STUDIO PATTI について<img class="ghost flip" src="assets/patti_silhouette.png" alt=""></h2>
     <div class="about-box">
-      <p>合同会社スタジオパッチ（愛知県一宮市）。テレビ番組・YouTubeの映像制作をしながら、絵本を描き、AIと一緒にツールを開発しています。</p>
-      <p>ここに並ぶツールは、ぜんぶ「自分たちが現場で本気で困ったこと」から生まれました。同じ困りごとを持つクリエイターの時間が、少しでも創ることに使えますように。</p>
+      <p>合同会社スタジオパッチは、キャラクター設計やデザイン、アニメーションの制作、ドキュメンタリー映像やテレビ番組、YouTube映像の制作など、クリエイティブ事業を展開する企業です。また、オリジナルキャラクター「おばけのパッチ」の世界を、絵本やメタバースに創っています。</p>
+      <p>ここに並ぶツールは、ぜんぶ「自分たちがクリエイティブの現場で本気で困ったこと」から生まれました。同じ困りごとを持つクリエイターの助けになり、少しでも「創ること」に時間を使えるようになると幸いです。</p>
+      <a class="about-link" href="https://studiopatti.base.shop/" target="_blank" rel="noopener"
+         onclick="gtag('event','about_shop_click')">STUDIO PATTI のオフィシャルサイトはこちら →</a>
     </div>
   </section>
 
@@ -626,6 +729,18 @@
       if (cached) show(cached.total);
     });
   }
+</script>
+
+<script>
+// 「困ったときは」: 1つ開いたら他は閉じる(全部開くと文字量が多くなるため)
+document.querySelectorAll('#help details').forEach(function (d) {
+  d.addEventListener('toggle', function () {
+    if (!d.open) return;
+    document.querySelectorAll('#help details[open]').forEach(function (o) {
+      if (o !== d) o.open = false;
+    });
+  });
+});
 </script>
 
 <script>
