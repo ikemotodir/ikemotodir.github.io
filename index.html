@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PATTI CREATIVE PRODUCT ── クリエイターがちょっと助かる無料ツールの棚</title>
-<meta name="description" content="STUDIO PATTIが作った、クリエイターがちょっと助かる無料ツールを並べています。文字起こし、スクリーンショット、動画変換。全部無料、登録不要。">
+<meta name="description" content="STUDIO PATTIが作った、クリエイターがちょっと助かる無料ツール。文字起こし・スクリーンショット・動画変換・ドット絵・ミニチュア加工。全部無料、登録不要。">
 <meta name="theme-color" content="#1a1a24">
 
 <!-- SNSシェア時のプレビュー（OGP / Twitterカード） -->
@@ -546,8 +546,8 @@
         <img class="tool-logo" src="assets/tool_shot.png" alt="PATTI SHOT ロゴ">
         <span class="badge live">公開中<span id="shotVer"></span></span>
         <h3>PATTI SHOT</h3>
-        <p>Webページを一番下まで丸ごと1枚のPNG / PDFに保存。AIにまるごと読ませたい時にも。</p>
-        <span class="chips"><i>Windows</i></span>
+        <p>Chromeに入れて、いま見ているページを一番下まで丸ごと1枚のPNG / PDFに。ログイン中のページもそのまま。</p>
+        <span class="chips"><i>Chrome拡張</i><i class="hot">Windows・Mac</i></span>
         <span class="cta">詳しく見る →</span>
       </a>
 
@@ -665,7 +665,7 @@
     <details><summary>ウイルス対策ソフトに止められた・デスクトップにアイコンが作られない</summary>
       <p>ごくまれに、ショートカット作成などが誤検知でブロックされることがあります。アプリ自体は安全に動作し、ソースコードは全部GitHubで公開しています。<br>
       対処：①フォルダ内の起動ファイル（PattiCrop.vbs など）を直接ダブルクリックすれば使えます ②対策ソフトの検疫／ブロック履歴から「許可」する ③アプリのフォルダを対策ソフトの<b>除外設定（例外）</b>に追加する<br>
-      それでも困ったら：<b>PIXEL と MINIATURE はブラウザ版</b>があるので、上の「今すぐ試せる」からどうぞ。ダウンロード不要なので、この問題は原理的に起きません。</p></details>
+      それでも困ったら：<b>PIXEL と MINIATURE はブラウザ版</b>(上の「今すぐ試せる」)、<b>SHOT は Chrome拡張版</b>なら、この問題は原理的に起きません。</p></details>
 
     <details><summary>PATTI SCRIBE の初回の文字起こしが、エラーで止まる</summary>
       <p>セキュリティソフトの「HTTPS検査（SSLスキャン）」機能が、初回だけ必要なAIモデルのダウンロードを妨げることがあります（Avast / AVG / Kaspersky / ESET などで起こり得ます）。<br>
@@ -846,7 +846,6 @@ document.querySelectorAll('#help details').forEach(function (d) {
 // 各ツールの最新バージョンを動的表示（取得失敗時はそのツールだけ何も出さない）
 [
   { repo: 'patti-scribe',    el: 'scribeVer' },
-  { repo: 'patti-shot',      el: 'shotVer' },
   { repo: 'patti-crop',      el: 'cropVer' },
   { repo: 'patti-pixel',     el: 'pixelVer' },
   { repo: 'patti-miniature', el: 'miniatureVer' }
@@ -861,6 +860,18 @@ document.querySelectorAll('#help details').forEach(function (d) {
     })
     .catch(function () {});
 });
+// SHOTだけ特別: 主配布のChrome拡張版(ext-v*タグ)の最新版を表示する
+fetch('https://api.github.com/repos/ikemotodir/patti-shot/releases?per_page=30')
+  .then(function (r) { return r.ok ? r.json() : null; })
+  .then(function (list) {
+    if (!list) return;
+    var ext = list.find(function (rel) { return /^ext-v\d/.test(rel.tag_name || ''); });
+    var tag = ext ? ext.tag_name.replace(/^ext-v/, '') : null;
+    if (!tag || !/^\d/.test(tag)) return;
+    var el = document.getElementById('shotVer');
+    if (el) el.textContent = ' v' + tag;
+  })
+  .catch(function () {});
 </script>
 
 </body>
