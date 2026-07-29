@@ -52,6 +52,7 @@
     font-family: 'Zen Maru Gothic', sans-serif;
     font-weight: 500;
     line-height: 1.8;
+    overflow-x: clip; /* 全幅帯(100vw)がスクロールバー分はみ出すのを防ぐ */
   }
   a { color: inherit; }
   .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
@@ -315,54 +316,59 @@
   }
   .about-link:hover { text-decoration: underline; }
 
-  /* パッチクリエイターズプログラム(最重要導線・イエローベースでページ内唯一の光る枠) */
-  .creators-box {
+  /* パッチクリエイターズプログラム(最重要導線)
+     サイト幅いっぱいのひまわり色の帯 = ページ内で唯一、背景色ごと反転する異質ゾーン */
+  .creators-band {
+    background: var(--yellow);
+    color: #1a1a24;
+    display: block;
+    text-decoration: none;
+    padding: 44px 20px;
+    transition: filter .15s ease;
+  }
+  .creators-band:hover { filter: brightness(1.05); }
+  .creators-inner {
+    max-width: 920px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 26px;
-    background: linear-gradient(120deg, rgba(255,196,0,.2), rgba(255,196,0,.07));
-    border: 2px solid var(--yellow);
-    border-radius: 20px;
-    padding: 30px 28px;
-    text-decoration: none;
-    animation: creatorsGlow 2.8s ease-in-out infinite;
-    transition: transform .15s ease;
+    gap: 30px;
   }
-  .creators-box:hover { transform: translateY(-3px); }
-  @keyframes creatorsGlow {
-    0%, 100% { box-shadow: 0 0 14px rgba(255,196,0,.3); }
-    50% { box-shadow: 0 0 36px rgba(255,196,0,.5); }
-  }
-  .creators-box img { width: 92px; height: auto; flex-shrink: 0; }
+  .creators-inner img { width: 108px; height: auto; flex-shrink: 0; }
   .creators-kicker {
     color: var(--pink);
     font-weight: 900;
-    letter-spacing: .14em;
-    font-size: .8rem;
+    letter-spacing: .16em;
+    font-size: .82rem;
   }
   .creators-body h2 {
     text-align: left;
     margin: 6px 0 8px;
-    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    color: #1a1a24;
+    font-size: clamp(1.25rem, 3.2vw, 1.7rem);
     font-weight: 900;
   }
   .creators-body p {
-    color: var(--text-sub);
-    font-size: .93rem;
-    margin-bottom: 14px;
+    color: #4a3a06;
+    font-size: .95rem;
+    margin-bottom: 16px;
   }
-  .creators-body p b { color: var(--yellow); }
+  .creators-body p b {
+    color: var(--pink);
+    font-weight: 900;
+  }
   .creators-cta {
     display: inline-block;
-    background: var(--yellow);
-    color: #1a1a24;
+    background: #1a1a24;
+    color: var(--yellow);
     font-weight: 900;
-    padding: 11px 30px;
+    padding: 12px 34px;
     border-radius: 999px;
-    box-shadow: 0 6px 24px rgba(255,196,0,.4);
+    transition: transform .15s ease;
   }
+  .creators-band:hover .creators-cta { transform: translateY(-2px); }
   @media (max-width: 560px) {
-    .creators-box { flex-direction: column; text-align: center; }
+    .creators-inner { flex-direction: column; text-align: center; gap: 18px; }
     .creators-body h2 { text-align: center; }
   }
 
@@ -375,6 +381,58 @@
     flex-direction: column;
     justify-content: center;
   }
+
+  /* ポップアップ(モーダル)。長い文章はここに逃がして本文をスッキリさせる */
+  dialog.pop {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card);
+    color: var(--text-sub);
+    max-width: 560px;
+    width: calc(100% - 40px);
+    padding: 28px 24px;
+    font-size: .92rem;
+    line-height: 1.9;
+    font-family: 'Zen Maru Gothic', sans-serif;
+  }
+  dialog.pop::backdrop { background: rgba(0, 0, 0, .65); }
+  dialog.pop h3 { color: var(--text); font-weight: 900; font-size: 1.1rem; margin-bottom: 12px; text-align: center; }
+  dialog.pop p + p { margin-top: 10px; }
+  dialog.pop .pop-close {
+    display: block;
+    margin: 20px auto 0;
+    background: var(--border);
+    color: var(--text);
+    border: none;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: .9rem;
+    padding: 9px 32px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .pop-link {
+    color: var(--text-dim);
+    font-size: .8rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .about-actions { text-align: center; margin-top: 16px; }
+  .about-actions .btn-mini {
+    display: inline-block;
+    background: var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: .88rem;
+    padding: 9px 24px;
+    border-radius: 999px;
+    margin: 4px 6px;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .about-actions .btn-mini.accent { background: var(--yellow); color: #1a1a24; }
 
   /* 対応環境チップ(ツールカード内) */
   .chips { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -464,7 +522,8 @@
   <div id="dl-counter">⬇ 累計ダウンロード数 <b id="dl-count-num"></b></div>
 </header>
 
-<main class="wrap">
+<main>
+<div class="wrap">
 
   <!-- ツール棚 -->
   <section id="tools">
@@ -525,7 +584,7 @@
       <div class="tool-card coming">
         <span class="emoji">🌱</span>
         <h3>COMING SOON</h3>
-        <p>次のツールが育っています。<br>「こんなツールが欲しい」も募集中。</p>
+        <p>次のツールが育っています。<br>リクエストも募集中。</p>
       </div>
 
     </div>
@@ -543,10 +602,13 @@
     </div>
   </section>
 
-  <!-- パッチクリエイターズプログラム(最重要導線) -->
-  <section id="creators">
-    <a class="creators-box" href="https://ikemotodir.github.io/chara-chara-lab/creators.html"
-       onclick="gtag('event','creators_program_click')">
+</div><!-- /.wrap (帯の前で一旦閉じる) -->
+
+<!-- パッチクリエイターズプログラム(最重要導線・全幅ひまわり帯) -->
+<section id="creators">
+  <a class="creators-band" href="https://ikemotodir.github.io/chara-chara-lab/creators.html"
+     onclick="gtag('event','creators_program_click')">
+    <div class="creators-inner">
       <img src="assets/patti_chara.png" alt="おばけのパッチ">
       <div class="creators-body">
         <span class="creators-kicker">PATTI CREATORS PROGRAM</span>
@@ -554,8 +616,11 @@
         <p>二次創作OK・販売OK。累計売上200万円まで<b>ロイヤリティ0%</b>。あなたの作品に、パッチを迎えませんか？</p>
         <span class="creators-cta">プログラムを見る →</span>
       </div>
-    </a>
-  </section>
+    </div>
+  </a>
+</section>
+
+<div class="wrap"><!-- 帯の後で再開 -->
 
   <!-- 広告枠 -->
   <section id="sponsor">
@@ -617,20 +682,38 @@
   <section id="about">
     <h2 class="about-h2"><img class="ghost" src="assets/patti_silhouette.png" alt="">STUDIO PATTI について<img class="ghost flip" src="assets/patti_silhouette.png" alt=""></h2>
     <div class="about-box">
-      <p>合同会社スタジオパッチは、キャラクター設計やデザイン、アニメーションの制作、ドキュメンタリー映像やテレビ番組、YouTube映像の制作など、クリエイティブ事業を展開する企業です。また、オリジナルキャラクター「おばけのパッチ」の世界を、絵本やメタバースに創っています。</p>
-      <p>ここに並ぶツールは、ぜんぶ「自分たちがクリエイティブの現場で本気で困ったこと」から生まれました。同じ困りごとを持つクリエイターの助けになり、少しでも「創ること」に時間を使えるようになると幸いです。</p>
-      <a class="about-link" href="https://studiopatti.base.shop/" target="_blank" rel="noopener"
-         onclick="gtag('event','about_shop_click')">STUDIO PATTI のオフィシャルサイトはこちら →</a>
+      <p>キャラクター・アニメーション・映像制作を手がけるクリエイティブ企業。オリジナルキャラクター「おばけのパッチ」の世界を、絵本やメタバースに創っています。</p>
+      <p>ここに並ぶツールは、ぜんぶクリエイティブの現場の「本気で困った」から生まれました。</p>
+      <div class="about-actions">
+        <button class="btn-mini" data-pop="dlg-about">もっと詳しく</button>
+        <a class="btn-mini accent" href="https://studiopatti.base.shop/" target="_blank" rel="noopener"
+           onclick="gtag('event','about_shop_click')">オフィシャルサイト →</a>
+      </div>
     </div>
   </section>
 
+</div><!-- /.wrap -->
 </main>
 
 <footer>
+  <p><span class="pop-link" data-pop="dlg-legal">ご利用にあたって（免責・アクセス解析）</span></p>
+  <p>© 2026 STUDIO PATTI LLC｜合同会社スタジオパッチ</p>
+</footer>
+
+<!-- ポップアップの中身 -->
+<dialog class="pop" id="dlg-about">
+  <h3>STUDIO PATTI について</h3>
+  <p>合同会社スタジオパッチは、キャラクター設計やデザイン、アニメーションの制作、ドキュメンタリー映像やテレビ番組、YouTube映像の制作など、クリエイティブ事業を展開する企業です。また、オリジナルキャラクター「おばけのパッチ」の世界を、絵本やメタバースに創っています。</p>
+  <p>ここに並ぶツールは、ぜんぶ「自分たちがクリエイティブの現場で本気で困ったこと」から生まれました。同じ困りごとを持つクリエイターの助けになり、少しでも「創ること」に時間を使えるようになると幸いです。</p>
+  <button class="pop-close">閉じる</button>
+</dialog>
+
+<dialog class="pop" id="dlg-legal">
+  <h3>ご利用にあたって</h3>
   <p>※本サイトで配布するアプリの利用によって生じたいかなる損害・トラブルについても、当社は一切の責任を負いません。自己責任でご利用ください。</p>
   <p>※本サイトはアクセス解析を利用しています。各アプリ本体の動作とは無関係で、あなたのデータが送信されることはありません。</p>
-  <p>© 2026 STUDIO PATTI LLC ── 合同会社スタジオパッチ（愛知県一宮市）</p>
-</footer>
+  <button class="pop-close">閉じる</button>
+</dialog>
 
 <script>
   // config.json を読み込んで「お知らせ」「広告枠」「スポンサー募集」を描画する。
@@ -729,6 +812,22 @@
       if (cached) show(cached.total);
     });
   }
+</script>
+
+<script>
+// ポップアップ開閉([data-pop]で開く・背景クリックか「閉じる」で閉じる)
+document.querySelectorAll('[data-pop]').forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    var d = document.getElementById(btn.getAttribute('data-pop'));
+    if (d && d.showModal) d.showModal();
+  });
+});
+document.querySelectorAll('dialog.pop').forEach(function (d) {
+  d.addEventListener('click', function (ev) { if (ev.target === d) d.close(); });
+  var c = d.querySelector('.pop-close');
+  if (c) c.addEventListener('click', function () { d.close(); });
+});
 </script>
 
 <script>
