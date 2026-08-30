@@ -22,6 +22,15 @@
       "text": "キャラクターの活用やIPビジネスに役立つ記事を毎日2つ発信。",
       "image": "assets/logo_chara_chara_lab.png",
       "url": "https://ikemotodir.github.io/chara-chara-lab/"
+    },
+    {
+      "id": "ad-3",
+      "enabled": true,
+      "label": "PR",
+      "title": "縦動画を3営業日で",
+      "text": "STUDIO PATTIが縦型ショート動画をお作りします。固定価格・打ち合わせなし・1本 ¥19,800 から。",
+      "image": "assets/logo_patti_reel.png",
+      "url": "https://ikemotodir.github.io/patti-reel/"
     }
   ],
   "sponsor": {
@@ -33,6 +42,12 @@
   },
   "downloads": {
     "enabled": true,
-    "repos": ["patti-scribe", "patti-crop", "patti-shot", "patti-pixel", "patti-miniature"]
+    "repos": [
+      "patti-scribe",
+      "patti-crop",
+      "patti-shot",
+      "patti-pixel",
+      "patti-miniature"
+    ]
   }
 }
