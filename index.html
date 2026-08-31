@@ -503,6 +503,21 @@
     font-size: .8rem;
   }
   footer p + p { margin-top: 8px; }
+
+/* 有料サービスの区画。無料ツールと混ぜないよう、はっきり枠で区切る */
+#paid-service{margin:0 auto;max-width:760px;padding:0 16px}
+.paid-box{border:2px solid var(--pink);border-radius:16px;background:var(--card);
+  padding:28px 24px;text-align:center}
+.paid-eyebrow{font-size:.78rem;letter-spacing:.12em;color:var(--pink);
+  margin:0 0 10px;font-weight:700}
+.paid-box h3{font-size:1.5rem;margin:0 0 12px}
+.paid-lead{font-size:1.02rem;line-height:1.9;margin:0 0 14px}
+.paid-detail{font-size:.94rem;line-height:2;margin:0 0 20px;color:#cfd0da}
+.paid-price{color:var(--yellow);font-size:1.2rem}
+.paid-btn{display:inline-block;background:var(--pink);color:#fff;font-weight:700;
+  text-decoration:none;padding:14px 30px;border-radius:999px;font-size:1.02rem}
+.paid-btn:hover{filter:brightness(1.08)}
+.paid-note{font-size:.8rem;color:#8b8c99;margin:16px 0 0}
 </style>
 
 <link rel="canonical" href="https://ikemotodir.github.io/">
@@ -822,6 +837,21 @@
   </section>
 
   <!-- インストール不要ですぐ試す -->
+  <section id="paid-service">
+    <div class="paid-box">
+      <p class="paid-eyebrow">ここから下は有料のサービスです</p>
+      <h3>動画を「作ってほしい」とき</h3>
+      <p class="paid-lead">上のツールは自分で作る人のためのものです。<br>
+        <b>作る時間がない</b>なら、こちらで作ります。</p>
+      <p class="paid-detail">縦型ショート動画（1080×1920）を、<b>固定価格・打ち合わせなし・3営業日</b>で。<br>
+        お試し1本 <b class="paid-price">¥19,800</b>（税込・30秒まで・修正1回込み）。<br>
+        見積もりも電話もありません。条件は全部ページに書いてあります。</p>
+      <a class="paid-btn" href="https://ikemotodir.github.io/patti-reel/"
+         onclick="gtag('event','paid_service_click',{from:'hub_section'})">作例を見る／料金を見る →</a>
+      <p class="paid-note">作っているのは、上のツールと同じ 合同会社スタジオパッチ です。</p>
+    </div>
+  </section>
+
   <section id="try-now">
     <div class="try-box">
       <h3>⚡ インストール不要。今すぐ試せる ⚡</h3>
